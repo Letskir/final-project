@@ -1,85 +1,214 @@
+@import url('https://fonts.googleapis.com/css?family=Space%20Grotesk:700|Space%20Grotesk:400');
+
+
+/*Стилі які стосуються html документа*/
+:root {
+  --m: 4rem; /*Розмір шрифта кнопки Get Started*/
+  --red: #FF6565;
+  --pink: #FF64F9;
+  --purple: #6B5FFF;
+  --blue: #4D8AFF;
+  --green: #5BFF89;
+  --yellow: #FFEE55;
+  --orange: #FF6D1B;
+ 
+  
+}
+
 body {
-    
-    background-color: #d3d3d3;
-    margin: 0;
-    padding: 0;
+  background-color: #141516;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .container {
-    border-radius: 10px;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #f0f0f0;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0px auto;
+  background-color: #f0f0f0;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: none;
+  margin-top: 20px;
 }
 
-header {
-    display: flex;
-    align-items: center;
-    background-color: #6b7d8c;
-    padding: 10px;
-    border-radius: 10px;
-}
+
 
 .icon {
-    width: 40px;
-    height: 40px;
-    background-image: url("https://cdn-icons-png.flaticon.com/512/4631/4631085.png"); 
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/4631/4631085.png");
+  background-size: contain;  /*Властивість, яка зберігає пропорції розміру фонової картинки*/
+  background-repeat: no-repeat;
+  margin-right: 10px;
 }
 
+
+
 h1 {
-    color: #fff;
-    font-size: 24px;
-    margin: 0;
+  color: #fff;
+  font-size: 24px;
+  margin: 0;
 }
 
 main {
-    background-color: #222;
-    padding: 20px;
-    border-radius: 8px;
+  background-color: #222;
+  padding: 20px;
+  border-radius: 8px;
 }
 
-.add-game-button {
-    background-color: #ccc;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-bottom: 20px;
+header {
+  display: flex;
+  align-items: center;
+  background-color: #6b7d8c;
+  padding: 10px;
+  border-radius: 10px;
 }
 
-.game-list {
-    background-color: #333;
-    padding: 10px;
-    border-radius: 8px;
+.add-game-button, .saved-games-button { /* додана ще одна кнопка (мусорка і сердечко)*/
+  background-color: #ccc;
+  border: none;  
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
 
-.game-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+
+.game-list, .saved-game-list {/* додані ще один клас для контейнера щоб зберігати ігри*/
+  background-color: #333;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
 }
+.game-list, .saved-game-list{ max-height: 200px; overflow-y: auto;}
+.game-item, .saved-game-item { /* класи додані через js і стилі до них*/
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+ 
+  color: #fff;
+}
+
 
 .game-item input[type="text"] {
-    flex-grow: 1;
-    padding: 10px;
-    border: none;
-    background-color: #555;
-    color: #fff;
+  flex-grow: 1;
+  padding: 10px;
+  border: none;
+  background-color: #555;
+  color: #fff;
+}
+
+.delete-icon, .heart-icon {  /*Стилі для обох кнопок відро та сердечко*/
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 10px;
+  cursor: pointer;
+  gap: 10px;
 }
 
 .delete-icon {
-    width: 24px;
-    height: 24px;
-    background-image: url('https://cdn-icons-png.flaticon.com/512/54/54324.png'); 
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin-left: 10px;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/54/54324.png');
+}/* окремо фон відра*/
+
+.heart-icon { /*окремо фон сердечка*/
+  background-image: url('https://cdn-icons-png.flaticon.com/512/535/535234.png'); /* Приклад URL іконки сердечка */
+}
+
+
+
+button.btn {   /*Додано клас btn щоб зробити розмір кнопок однаковими (додати гру/зберігти/ get started)*/
+  border: calc(0.08 * var(--m)) solid transparent;
+  position: relative;
+  color: #F3F3F3;
+  font-family: 'Space Grotesk';
+  font-size: var(--m);
+  border-radius: calc(0.7 * var(--m));
+  padding: calc(0.5 * var(--m)) calc(1 * var(--m));
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  
+  background:linear-gradient(#121213, #121213), linear-gradient(#121213 50%, rgba(18, 18, 19, 0.6) 80%, rgba(18, 18, 19, 0)),  linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
+  background-origin: border-box;
+  background-clip: padding-box, border-box, border-box;
+  background-size: 200%;
+  animation: animate 2s infinite linear;
+}
+
+button.btn::before {  /*додан клас btn */
+  content: '';
+  background: linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
+  height: 30%;
+  width: 60%;
+  position: absolute;
+  bottom: -20%;
+  z-index: -5;
+  background-size: 200%;
+  animation: animate 2s infinite linear;
+  filter: blur(calc(0.8 * var(--m)));
+}
+
+button.btn:hover, button.btn:hover::before { /*додан клас btn */
+  animation: animate 0.5s infinite linear;
+}
+
+@keyframes animate {
+  0% {background-position: 0}
+  100% {background-position: 200%}
+}
+
+
+div.container {   /*Додано клас btn щоб зробити розмір кнопок однаковими (додати гру/зберігти/ get started)*/
+    border: calc(0.08 * var(--m)) solid transparent;
+    position: relative;
+    color: #F3F3F3;
+    font-family: 'Space Grotesk';
+    font-size: var(--m);
+    border-radius: calc(0.7 * var(--m));
+    padding: calc(0.5 * var(--m)) calc(1 * var(--m));
+    display: none;
+    justify-content: center;
     cursor: pointer;
+    
+    background:linear-gradient(#121213, #121213), linear-gradient(#121213 50%, rgba(18, 18, 19, 0.6) 80%, rgba(18, 18, 19, 0)),  linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
+    background-origin: border-box;
+    background-clip: padding-box, border-box, border-box;
+    background-size: 200%;
+    animation: animate 2s infinite linear;
+  }
+  
+  div.container::before {  /*додан клас btn */
+    content: '';
+    background: linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
+    height: 60%;
+    width: 90%;
+    position: absolute;
+    bottom: -20%;
+    z-index: -5;
+    background-size: 200%;
+    animation: animate 2s infinite linear;
+    filter: blur(calc(0.8 * var(--m)));
+  }
+  
+  div.container:hover, div.container:hover::before { /*додан клас btn */
+    animation: animate 0.5s infinite linear;
+  }
+  
+  @keyframes animate {
+    0% {background-position: 0}
+    100% {background-position: 200%}
+  }
+
+.icons { /* додано клас для того щоб відро і сердечко стояли в ряд*/
+  display: flex;
+  align-items: center;
 }
