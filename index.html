@@ -1,22 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/style.css">
     <title>Нотатки з ігор</title>
 </head>
-
 <body>
+    
+    <button class="btn">Get started</button>
     <div class="container">
         <header>
-            <div class="icon"></div>
-            <h1>Нотатки з ігор
-            </h1>
+            <div class="icon"></div> <!-- Контейнер для иконок мусорка и ведро которые добавлены через CSS -->
+            <h1>Нотатки з ігор</h1>
+           
         </header>
         <main>
-            <button class="add-game-button">Додати гру</button>
-            <div class="game-list" id="game-list"></div>
+            <div class="menu"> <!--Контейнер  в  якому дві кнопки (зберігти та видалити гру та два контейнери)-->
+                <button class="add-game-button">Додати гру</button>
+                <button class="saved-games-button"  >Обрані ігри</button>
+                <div class="game-list" id="game-list"></div> <!--контейнер для додавання гри-->
+                <div class="saved-game-list" id="saved-game-list" style="display: none;"></div><!--контейнер для зберігання гри із стилями-->
+            </div>
         </main>
     </div>
     <script src="JS/script.js"></script>
