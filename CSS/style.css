@@ -97,7 +97,7 @@ header {
  
   color: #fff;
 }
-.saved-game-item{list-style-type: disc;margin-left: 20px;}
+.saved-game-item{margin-left: 20px;}
 .saved-game-list{font-size: 10px;}
 .game-item input[type="text"] {
   flex-grow: 1;
@@ -214,5 +214,4 @@ div.container {   /*Додано клас btn щоб зробити розмір
   display: flex;
   align-items: center;
 }
-
 
