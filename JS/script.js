@@ -24,17 +24,15 @@ function deleteGame(element) {
 function heartGame(element) {
     const gameItem = element.parentNode.parentNode;
     const gameTitle = gameItem.querySelector('input[type="text"]').value;
-    if (!savedGames.includes(gameTitle)) {
+    if (gameTitle && !savedGames.includes(gameTitle)) {
         savedGames.push(gameTitle);
     }
-    alert('Ви додали гру до улюблених!');
 }
-
 document.querySelector(".saved-games-button").onclick = function() {
     const savedGameList = document.getElementById('saved-game-list');
     savedGameList.innerHTML = ''; // Очищуємо попередній список
     savedGames.forEach(game => {
-        const gameItem = document.createElement('div');
+        const gameItem = document.createElement('li');
         gameItem.className = 'saved-game-item';
         gameItem.textContent = game;
         savedGameList.appendChild(gameItem);
@@ -51,5 +49,8 @@ document.addEventListener("DOMContentLoaded", function() {
         
     }
 });
+
+
+
 
 
