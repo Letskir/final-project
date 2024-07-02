@@ -95,7 +95,7 @@ header {
   align-items: center;
   margin-bottom: 10px;
  
-  color: #fff;
+  color: #757575;
 }
 .saved-game-item{margin-left: 20px;}
 .saved-game-list{font-size: 10px;}
@@ -213,5 +213,72 @@ div.container {   /*Додано клас btn щоб зробити розмір
 .icons { /* додано клас для того щоб відро і сердечко стояли в ряд*/
   display: flex;
   align-items: center;
+  
 }
 
+.save{ color:whitesmoke; background-color: #121213;}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #ccc;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #dbdbdb;
+  width: 80%;
+  max-width: 500px;
+}
+
+.close {
+  color: #000000;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#modal-title {
+  margin-bottom: 10px;
+}
+
+#modal-input {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+#modal-save {
+  background-color: #6b7d8c;
+  color: rgb(161, 161, 161);
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.heart-icon.active-heart {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/535/535234.png');
+  background-color: red;
+}
