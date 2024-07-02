@@ -7,14 +7,17 @@ const savedGames = JSON.parse(localStorage.getItem('savedGames')) || [];
 document.querySelector(".add-game-button").onclick = function() {
     const gameList = document.getElementById('game-list');
     const gameItem = document.createElement('div');
+
     gameItem.className = 'game-item';
     gameItem.innerHTML = `
         <input type="text" placeholder="Нова гра">
         <div class="icons">                 
+            <button class="save">Save</button>
             <div class="heart-icon" id="heart-icon" onclick="heartGame(this)"></div>
             <div class="delete-icon" onclick="deleteGame(this)"></div>
         </div>
     `;                                                                                      //вище додано клас icons і в ньому два контейнера для серця і відра
+
     gameList.appendChild(gameItem);
 }
 
@@ -25,7 +28,10 @@ function deleteGame(element) {
 
 
 // function heartGame стоврена за анологією відра тільки для зберігання
+
 function heartGame(element) {
+    element.classList.toggle("active-heart");
+
     const gameItem = element.parentNode.parentNode;
     const gameTitle = gameItem.querySelector('input[type="text"]').value;
     if (!savedGames.includes(gameTitle)) {
@@ -39,14 +45,17 @@ function heartGame(element) {
 document.querySelector(".saved-games-button").onclick = function() {
     const savedGameList = document.getElementById('saved-game-list');
     savedGameList.innerHTML = ''; // Очищуємо попередній список
-    savedGames.forEach(game => {
-        const gameItem = document.createElement('div');
+    savedGames.forEach((game, index) => {
+        const gameItem = document.createElement('button');
         gameItem.className = 'saved-game-item';
         gameItem.textContent = game;
+        gameItem.onclick = () => openModal(game, index);
         savedGameList.appendChild(gameItem);
     });
     savedGameList.style.display = savedGameList.style.display === 'none' ? 'block' : 'none';
 }
+
+
 
 document.addEventListener("DOMContentLoaded", function() {
     let container = document.querySelector(".container");
@@ -60,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 });
+
 
 
 function loadSavedGames() {
@@ -78,8 +88,34 @@ function loadSavedGames() {
     });
 }
 
+
 //Функція loadSavedGames() призначена для завантаження збережених ігор з масиву savedGames та їх відображення на сторінці у вигляді HTML-елементів.
 
+function openModal(game, index) {
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalInput = document.getElementById('modal-input');
+
+    modalTitle.textContent = game;
+    modalInput.value = localStorage.getItem(`gameNotes_${index}`) || '';
+    modal.style.display = 'block';
+
+    const saveButton = document.getElementById('modal-save');
+    saveButton.onclick = () => saveModalInput(index);
+}
+
+function closeModal() {
+    const modal = document.getElementById('modal');
+    modal.style.display = 'none';
+}
+
+function saveModalInput(index) {
+    const modalInput = document.getElementById('modal-input');
+    localStorage.setItem(`gameNotes_${index}`, modalInput.value);
+    closeModal();
+}
+
+document.getElementById('modal-close').onclick = closeModal;
 
 
 
